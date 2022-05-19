@@ -29,18 +29,7 @@ const process = {
     const response = await user.register();
     return res.json(response);
   },
-  // upload: uploadWithOriginalFilename.single('attachment'),(req,res) =>{ // 5
-  //   let test = JSON.stringify(req.file)
-  //   var dejson = JSON.parse(test)
-  //   var path = dejson.path
-  //   fs.readFile(path, function(err, data){
-  //       console.log('picture loading...');
-  //       res.writeHead(200);
-  //       res.write(data);
-  //       res.render('confirmation');
-  //       return res.write(data);
-  //       // res.end();    
-  //   });
+ 
 };
 
 module.exports = {

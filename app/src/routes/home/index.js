@@ -23,8 +23,11 @@ var storage  = multer.diskStorage({ // 2
   destination(req, file, cb) {
     cb(null, 'uploadedFiles/');
   },
+//   filename(req, file, cb) {
+//     cb(null, `${Date.now()}__${file.originalname}`);
+//   },
   filename(req, file, cb) {
-    cb(null, `${Date.now()}__${file.originalname}`);
+    cb(null, file.originalname);
   },
 });
 

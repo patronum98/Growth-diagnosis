@@ -22,9 +22,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use("/", home); // use -> 미들 웨어를 등록해주는 메서드.
 
-// 파일 업로드
-// app.listen(function(){
-//     var dir = './upload';
-// });
+var PythonShell = require("python-shell");
+var options = {
+    mode: 'text',
+    pythonPath: '',
+    pythonOptions: ['-u'],
+    scriptPath: '',
+    args: ['C:/projects/smartfarm/node/login-lecture/app/uploadedFiles/']
+};
+
+PythonShell.PythonShell.run('test.py', options, function(err, results){
+    console.log('fu')
+    if (err) { console.log(err); return err};
+    
+    console.log('results: %j', results);
+    
+});
 
 module.exports = app;

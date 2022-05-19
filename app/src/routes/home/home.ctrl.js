@@ -15,6 +15,9 @@ const output = {
   upload: (req, res) => {
     res.render("home/upload");
   },
+  confirmation: (req, res) => {
+    res.render("home/confirmation");
+  },
 };
 
 
@@ -29,10 +32,12 @@ const process = {
     const response = await user.register();
     return res.json(response);
   },
- 
-};
+  // confirmation: (req, res) => {
+  //   res.render("home/confirmation");
+  // },
+}; 
 
 module.exports = {
   output,
   process,
-};
+}; 

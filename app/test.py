@@ -3,11 +3,10 @@ import sys
 import cv2
 import os
 
-print(sys.argv)
+# print(sys.argv)
 file_path = ''
 for path in sys.argv:  
     file_path = path
-
 
 path_gray = 'C:/projects/smartfarm/node/login-lecture/app/image/'
 
@@ -21,3 +20,5 @@ for i in os.listdir(file_path):
         cv2.imwrite(path_gra, img_cv_gray)
     else:
         continue
+
+print("test")

@@ -2,9 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-
 const ctrl = require("./home.ctrl");
-
 const multer   = require('multer');
 
 // 화면 보여주기
@@ -13,13 +11,13 @@ router.get("/login", ctrl.output.login);
 router.get("/register", ctrl.output.register);
 router.get("/confirmation", ctrl.output.confirmation);
 router.get("/upload",ctrl.output.upload)
+router.get("/mypage",ctrl.output.mypage)
+
 
 // 코드 실행
 router.post("/login", ctrl.process.login);
 router.post("/register", ctrl.process.register);
-// router.post("/upload", ctrl.process.upload)
-// router.post("/confirmation", ctrl.process.confirmation);
-
+router.post("/mypage", ctrl.process.mypage);
 
 var fs = require('fs');
 
@@ -39,9 +37,6 @@ var storage  = multer.diskStorage({ // 2
 
 var uploadWithOriginalFilename = multer({ storage: storage });
 var filename;
-// router.get('/', function(req,res){
-//     res.render('upload');
-//   });
   
 router.post('/upload', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
 
@@ -59,8 +54,6 @@ router.post('/upload', uploadWithOriginalFilename.single('attachment'), function
         
         console.log('results: %j', results);
         let test = JSON.stringify(req.file)
-        // console.log(req.file)
-        // console.log(run_var)
         var dejson = JSON.parse(test)
         console.log(dejson.path)
         var path = dejson.path
@@ -75,26 +68,9 @@ router.post('/upload', uploadWithOriginalFilename.single('attachment'), function
         });
         
     });
-    // let test = JSON.stringify(req.file)
-    // console.log(req.file)
-    // console.log(run_var)
-    // var dejson = JSON.parse(test)
-    // // var path = dejson.path
-    // var path = 'image\\po1.jpg'
-
-    // fs.readFile(path, function(err, data){
-    //     console.log('PICTURE LOADING...');
-    //     res.writeHead(200);
-    //     res.write(data);
-    //     // res.render('confirmation');
-    //     res.end();    
-    // });
 });
 
 router.post('/confirmation', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
-  // let test = JSON.stringify(req.file)
-  // var dejson = JSON.parse(test)
-  // var path = dejson.path
   var path_g = 'image\\' + filename;
   fs.readFile(path_g, function(err, data){
       console.log('GRAY');
@@ -103,7 +79,8 @@ router.post('/confirmation', uploadWithOriginalFilename.single('attachment'), fu
       // res.render('confirmation');
       res.end();    
   });
-}); 
+});
+
 
 
 

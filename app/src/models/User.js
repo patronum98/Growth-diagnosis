@@ -34,6 +34,17 @@ class User {
       return { success: false, msg: err };
     }
   }
+
+  async update() {
+    const client = this.body;
+    try {
+      console.log(client.name)
+      const response = await UserStorage.update(client);
+      return response;
+    } catch (err) {
+      return { success: false, msg: err };
+    }
+  }
 }
 
 module.exports = User;
